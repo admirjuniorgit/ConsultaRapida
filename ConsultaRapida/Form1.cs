@@ -1198,6 +1198,14 @@ namespace ConsultaRapida
             manutencao.RestaurarBD(IP,PORTA,USER,SENHA,txtNomebancoBK.Text,txtPastaRest.Text);
         }
 
+        private void tabControl2_TabIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl2.SelectedIndex == 1)
+            {
+                
+            }
+        }
+
         private void btnScript_Click(object sender, EventArgs e)
         {
 
