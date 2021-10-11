@@ -16,8 +16,8 @@ namespace ConsultaRapida
 {
     public partial class Login : Form
     {
-        bool isDrag = false;
-        int lastY = 0;
+        //    bool isDrag = false;
+        //    int lastY = 0;
 
         [DllImport("wininet.dll")]
 
