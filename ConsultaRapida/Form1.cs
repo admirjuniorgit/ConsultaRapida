@@ -1206,6 +1206,11 @@ namespace ConsultaRapida
             }
         }
 
+        private void txtExecutarCHK_Click(object sender, EventArgs e)
+        {
+            manutencao.CheckDB(IP,PORTA,USER,SENHA,txtnomeDBCHK.Text);
+        }
+
         private void btnScript_Click(object sender, EventArgs e)
         {
 

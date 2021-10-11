@@ -170,28 +170,28 @@ namespace ConsultaRapida
                         comm.ExecuteNonQuery();
                         
                     }
-                    con.Close();
+                    
 
 
                     //executa terceira query
                     sql.AppendFormat(@"DBCC CHECKDB ('["+NOMEDB+"]', REPAIR_ALLOW_DATA_LOSS)");
 
 
-                    con.Open();
+                    
 
                     using (SqlCommand comm = new SqlCommand(sql.ToString(), con))
                     {
                         comm.ExecuteNonQuery();
                        
                     }
-                    con.Close();
+                    
 
 
                     //exeuta quarta query e finaliza com a mensagem
                     sql.AppendFormat(@"ALTER DATABASE ["+NOMEDB+"] SET MULTI_USER");
 
 
-                    con.Open();
+                    
 
                     using (SqlCommand comm = new SqlCommand(sql.ToString(), con))
                     {

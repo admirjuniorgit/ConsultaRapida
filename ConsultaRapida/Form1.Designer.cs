@@ -942,6 +942,7 @@
             this.txtExecutarCHK.Text = "Executar";
             this.txtExecutarCHK.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.txtExecutarCHK.UseVisualStyleBackColor = false;
+            this.txtExecutarCHK.Click += new System.EventHandler(this.txtExecutarCHK_Click);
             // 
             // label14
             // 
