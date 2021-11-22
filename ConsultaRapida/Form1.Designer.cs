@@ -39,7 +39,6 @@
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.MenuSuperior = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtLock = new System.Windows.Forms.TextBox();
             this.panelLock = new System.Windows.Forms.PictureBox();
             this.btnLock = new System.Windows.Forms.PictureBox();
@@ -89,7 +88,6 @@
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.lbDev = new System.Windows.Forms.Label();
             this.MenuSuperior.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelLock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnControlBar)).BeginInit();
@@ -207,7 +205,6 @@
             // MenuSuperior
             // 
             this.MenuSuperior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(26)))), ((int)(((byte)(156)))));
-            this.MenuSuperior.Controls.Add(this.pictureBox1);
             this.MenuSuperior.Controls.Add(this.txtLock);
             this.MenuSuperior.Controls.Add(this.panelLock);
             this.MenuSuperior.Controls.Add(this.btnLock);
@@ -228,19 +225,6 @@
             this.MenuSuperior.TabIndex = 19;
             this.MenuSuperior.DoubleClick += new System.EventHandler(this.MenuSuperior_DoubleClick);
             this.MenuSuperior.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuSuperior_MouseDown);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1054, 14);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(142, 28);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 33;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // txtLock
             // 
@@ -879,7 +863,6 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.MenuSuperior.ResumeLayout(false);
             this.MenuSuperior.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelLock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnControlBar)).EndInit();
@@ -967,7 +950,6 @@
         private System.Windows.Forms.PictureBox btnConsulta;
         private System.Windows.Forms.PictureBox panelLock;
         private System.Windows.Forms.Label lbDev;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
