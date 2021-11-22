@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Data.Linq;
+using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
@@ -576,24 +577,7 @@ namespace ConsultaRapida
 
         private void btnConsulta_Click(object sender, EventArgs e)
         {
-            if (tabControl1.TabPages.Count<= 0)
-            {
-
-                txtConsulta.ForeColor = Color.Black;
-                _criaTabs();
-                string tabcount = tabControl1.TabCount.ToString();
-                btnLimparTab.Text = "Limpar{" + tabcount + "}";
-
-                _carregarEstrutura();
-                _ocultarHeaderGridEstrutura();
-                lbRowCount.Visible = true;
-                _escreverLOG();
-            }
-            else
-            {
-                executarConsulta();
-                _escreverLOG();
-            }
+            
 
         }
         private void TabControl_Click(object sender, EventArgs e)
@@ -673,8 +657,7 @@ namespace ConsultaRapida
 
             txtConsulta.ForeColor = Color.Black;
             _criaTabs();
-            string tabcount = tabControl1.TabCount.ToString();
-            btnLimparTab.Text = "Limpar{" + tabcount + "}";
+            string tabcount = tabControl1.TabCount.ToString();            
 
             _carregarEstrutura();
             _ocultarHeaderGridEstrutura();
@@ -684,9 +667,7 @@ namespace ConsultaRapida
 
         private void button1_Click(object sender, EventArgs e)
         {
-            TabPage page = tabControl1.SelectedTab;
-            DataGridView grid = (DataGridView)page.Controls[0];
-            exportarDados.Excel(grid);
+         
 
 
         }
@@ -723,6 +704,9 @@ namespace ConsultaRapida
         {
             Fundo.Visible = true;
             btnLimparTab.Visible = false;
+            btnConsulta.Visible = false;
+            btnExportar.Visible = false;
+            btnXLSEstrutura.Visible = false;
 
             Fundo.Dock = DockStyle.Fill;
             lbQueryLayout.Visible = false;
@@ -730,7 +714,9 @@ namespace ConsultaRapida
             eliminar.ShowDialog();
 
             btnLimparTab.Visible = true;
-
+            btnConsulta.Visible = true;
+            btnExportar.Visible = true;
+            btnXLSEstrutura.Visible = true;
 
             Fundo.Visible = false;
             carregarBancos();
@@ -740,6 +726,9 @@ namespace ConsultaRapida
         {
             Fundo.Visible = true;
             btnLimparTab.Visible = false;
+            btnConsulta.Visible = false;
+            btnExportar.Visible = false;
+            btnXLSEstrutura.Visible = false;
 
             Fundo.Dock = DockStyle.Fill;
             lbQueryLayout.Visible = false;
@@ -747,6 +736,9 @@ namespace ConsultaRapida
             truncate.ShowDialog();
 
             btnLimparTab.Visible = true;
+            btnConsulta.Visible = true;
+            btnExportar.Visible = true;
+            btnXLSEstrutura.Visible = true;
 
             Fundo.Visible = false;
             carregarBancos();
@@ -783,7 +775,7 @@ namespace ConsultaRapida
         private void btnXLSEstrutura_Click(object sender, EventArgs e)
         {
 
-            exportarDados.Excel(dgvEstrutura);
+           
         }
 
         private void txtConsulta_MouseDown(object sender, MouseEventArgs e)
@@ -824,6 +816,10 @@ namespace ConsultaRapida
             Fundo.Visible = true;
 
             btnLimparTab.Visible = false;
+            btnConsulta.Visible = false;
+            btnExportar.Visible = false;
+            btnXLSEstrutura.Visible = false;
+
             lbQueryLayout.Visible = false;
 
             Fundo.Dock = DockStyle.Fill;
@@ -834,6 +830,9 @@ namespace ConsultaRapida
 
 
             btnLimparTab.Visible = true;
+            btnConsulta.Visible = true;
+            btnExportar.Visible = true;
+            btnXLSEstrutura.Visible = true;
 
             lbQueryLayout.Visible = true;
             carregarBancos();
@@ -998,7 +997,7 @@ namespace ConsultaRapida
         {
             lbBanco.Visible = true;
             lbBanco.Text = "Drop em um ou mais banco de dados";
-
+            
         }
 
         private void pictureBox2_MouseLeave(object sender, EventArgs e)
@@ -1006,6 +1005,7 @@ namespace ConsultaRapida
 
             lbBanco.Text = "Banco de dados selecionado: " + listBox1.Text.ToString();
             lbBanco.Visible = true;
+            
         }
 
         private void btnConsulta_KeyDown(object sender, KeyEventArgs e)
@@ -1069,7 +1069,10 @@ namespace ConsultaRapida
             Fundo.Visible = true;
 
             btnLimparTab.Visible = false;
+            btnConsulta.Visible = false;
+            btnExportar.Visible = false;
             lbQueryLayout.Visible = false;
+            btnXLSEstrutura.Visible = false;
 
             Fundo.Dock = DockStyle.Fill;
             ScriptSQL script = new ScriptSQL(USER, SENHA, IP, PORTA, lbbancoselecionando.Text);
@@ -1080,6 +1083,9 @@ namespace ConsultaRapida
 
 
             btnLimparTab.Visible = true;
+            btnConsulta.Visible = true;
+            btnExportar.Visible = true;
+            btnXLSEstrutura.Visible = true;
 
             lbQueryLayout.Visible = true;
             carregarBancos();
@@ -1108,11 +1114,12 @@ namespace ConsultaRapida
             if (FormBorderStyle == FormBorderStyle.None)
             {
                 this.FormBorderStyle = FormBorderStyle.Sizable;
-
+                btnControlBar.Image = Properties.Resources.btnborda2;
             }
             else
             {
                 this.FormBorderStyle = FormBorderStyle.None;
+                btnControlBar.Image = Properties.Resources.btnborda1;
 
             }
         }
@@ -1122,11 +1129,13 @@ namespace ConsultaRapida
             if (TopMost==false)
             {
                 TopMost = true;
+                btnTopMost.Image = Properties.Resources.btnfixar2;
 
             }
             else
             {
                 TopMost = false;
+                btnTopMost.Image = Properties.Resources.btnfixar2;
             }
         }
 
@@ -1142,60 +1151,36 @@ namespace ConsultaRapida
 
         private void btnExecutarAtach_Click(object sender, EventArgs e)
         {
-            manutencao.AtacharDB(IP,PORTA,USER, SENHA,txtNomeBanco.Text,txtMDF.Text,txtLDF.Text);
+            
         }
 
         private void btnPathMDF_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "mdf files (*.mdf)|*.mdf|All files (*.*)|*.*";
-            ofd.Title = "Por favor selecione o arquivo físico do banco de dados";
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                txtMDF.Text = ofd.FileName;
-                txtNomeBanco.Text = ofd.SafeFileName;
-            }
-        }
 
+        }
         private void btnPathLDF_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "ldf files (*.ldf)|*.ldf|All files (*.*)|*.*";
-            ofd.Title = "Por favor selecione o arquivo físico do banco de dados";
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                txtLDF.Text = ofd.FileName;
-                txtNomeBanco.Text = ofd.SafeFileName;
-            }
+           
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            if (fbd.ShowDialog() == DialogResult.OK)
-            {
-                txtPastaBK.Text = fbd.SelectedPath + @"\" + txtNomebancoBK.Text + ".bkp";
-            }
+            
         }
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            if (fbd.ShowDialog() == DialogResult.OK)
-            {
-                txtPastaRest.Text = fbd.SelectedPath + @"\" + txtNomebancoBK.Text + ".bkp";
-            }
             
         }
 
         private void btnExecutarBK_Click(object sender, EventArgs e)
         {
-            manutencao.BackupDB(IP,PORTA,USER,SENHA,txtNomebancoBK.Text, txtPastaBK.Text);
+            
         }
 
         private void btnRestaurarBK_Click(object sender, EventArgs e)
         {
-            manutencao.RestaurarBD(IP,PORTA,USER,SENHA,txtNomebancoBK.Text,txtPastaRest.Text);
+            
         }
 
         private void tabControl2_TabIndexChanged(object sender, EventArgs e)
@@ -1208,12 +1193,255 @@ namespace ConsultaRapida
 
         private void txtExecutarCHK_Click(object sender, EventArgs e)
         {
-            manutencao.CheckDB(IP,PORTA,USER,SENHA,txtnomeDBCHK.Text);
+           
+        }
+        private void consultarDBF(string banco, string arquivo)
+        {
+            {
+                string connectionstring = @"Provider =VFPOLEDB.1;Data Source =" + banco + " ;Collating Sequence = machine;";
+                string mySelectQuery = "SELECT * FROM " + arquivo;
+                OleDbConnection cnn = new OleDbConnection(connectionstring);
+                OleDbCommand myCommand = new OleDbCommand(mySelectQuery, cnn);
+                cnn.Open();
+                DataTable dt = new DataTable();
+                dt.Load(myCommand.ExecuteReader());
+                cnn.Close();
+
+                //dgvRegistrosDBF.Datasource = dt;
+            }
+        }
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                string banco = ofd.FileName;
+                string arquivo = ofd.SafeFileName;
+                consultarDBF(banco, arquivo);
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLock_Click(object sender, EventArgs e)
+        {
+            if (txtLock.Visible == false && panelLock.Visible ==false)
+            {
+                txtLock.Visible = true;
+                panelLock.Visible = true;
+                txtLock.Focus();
+                txtLock.Select();
+                btnLock.Image = Properties.Resources.btncadeado2;
+            }
+            else
+            {
+                txtLock.Visible = false;
+                panelLock.Visible = false;
+
+                btnCriarBanco.Visible = false;
+                btnDropDB.Visible = false;
+                btnDropTb.Visible = false;
+                btnScript.Visible = false;
+                lbbancoselecionando.Text = "";
+                btnLock.Image = Properties.Resources.btncadeado1;
+                lbDev.Visible = false;
+
+            }
+        }
+
+        private void txtLock_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                if (txtLock.Text == "p@ssw0rd2014@") //Senha para ferramentas de manutenção, não divulgar para o suporte a primeiro momento.
+                {
+                    if (btnScript.Visible == false)
+                    {
+                        btnCriarBanco.Visible = true;
+                        btnDropDB.Visible = true;
+                        btnDropTb.Visible = true;
+                        btnScript.Visible = true;
+
+                        txtLock.Clear();
+                        lbDev.Visible = true;
+                    }
+                    else
+                    {
+                        btnCriarBanco.Visible = false;
+                        btnDropDB.Visible = false;
+                        btnDropTb.Visible = false;
+                        btnScript.Visible = false;
+                        lbDev.Visible = false;
+                    }
+                   
+                }
+                else
+                {
+                    MessageBox.Show("Senha incorreta!");
+                    txtLock.Clear();
+                }
+            }
+        }
+
+        private void btnLupa_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnConsulta_MouseEnter(object sender, EventArgs e)
+        {
+           btnConsulta.Image= Properties.Resources.btnExecutar2;
+
+        }
+
+        private void btnConsulta_MouseLeave(object sender, EventArgs e)
+        {
+            btnConsulta.Image = Properties.Resources.btnExecutar1;
+        }
+
+        private void btnExportar_MouseEnter(object sender, EventArgs e)
+        {
+            btnExportar.Image = Properties.Resources.btnXls2;
+        }
+
+        private void btnExportar_MouseLeave(object sender, EventArgs e)
+        {
+            btnExportar.Image = Properties.Resources.btnXls1;
+        }
+
+        private void btnLimparTab_MouseEnter(object sender, EventArgs e)
+        {
+            btnLimparTab.Image = Properties.Resources.btnLimpar2;
+        }
+
+        private void btnLimparTab_MouseLeave(object sender, EventArgs e)
+        {
+            btnLimparTab.Image = Properties.Resources.btnLimpar1;
+        }
+
+        private void btnXLSEstrutura_MouseEnter(object sender, EventArgs e)
+        {
+            btnXLSEstrutura.Image = Properties.Resources.btnXls2;
+        }
+
+        private void btnXLSEstrutura_MouseLeave(object sender, EventArgs e)
+        {
+            btnXLSEstrutura.Image = Properties.Resources.btnXls1;
+        }
+
+        private void btnConsulta_Click_1(object sender, EventArgs e)
+        {
+            if (tabControl1.TabPages.Count <= 0)
+            {
+
+                txtConsulta.ForeColor = Color.Black;
+                _criaTabs();
+                string tabcount = tabControl1.TabCount.ToString();
+                btnLimparTab.Text = "Limpar{" + tabcount + "}";
+
+                _carregarEstrutura();
+                _ocultarHeaderGridEstrutura();
+                lbRowCount.Visible = true;
+                _escreverLOG();
+            }
+            else
+            {
+                executarConsulta();
+                _escreverLOG();
+            }
+        }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            TabPage page = tabControl1.SelectedTab;
+            DataGridView grid = (DataGridView)page.Controls[0];
+
+            exportarDados.Excel(grid);
+            
+        }
+
+        private void btnLimparTab_Click_1(object sender, EventArgs e)
+        {
+            tabControl1.TabPages.Clear();
+            txtConsulta.Clear();
+            btnLimparTab.Text = "Limpar";
+        }
+
+        private void btnXLSEstrutura_Click_1(object sender, EventArgs e)
+        {
+            exportarDados.Excel(dgvEstrutura);
+        }
+
+        private void btnFechar_MouseEnter(object sender, EventArgs e)
+        {
+            btnFechar.Size = new Size(27,27);
+        }
+
+        private void btnFechar_MouseLeave(object sender, EventArgs e)
+        {
+            btnFechar.Size = new Size(25, 25);
+        }
+
+        private void btnMaximizar_MouseEnter(object sender, EventArgs e)
+        {
+            btnMaximizar.Size = new Size(27, 27);
+        }
+
+        private void btnMaximizar_MouseLeave(object sender, EventArgs e)
+        {
+            btnMaximizar.Size = new Size(25, 25);
+        }
+
+        private void btnMinimizar_MouseEnter(object sender, EventArgs e)
+        {
+            btnMinimizar.Size = new Size(27, 27);
+        }
+
+        private void btnMinimizar_MouseLeave(object sender, EventArgs e)
+        {
+            btnMinimizar.Size = new Size(25, 25);
+        }
+
+        private void btnTopMost_MouseEnter(object sender, EventArgs e)
+        {
+            btnTopMost.Image = Properties.Resources.btnfixar2;
+        }
+
+        private void btnTopMost_MouseLeave(object sender, EventArgs e)
+        {
+            btnTopMost.Image = Properties.Resources.btnfixar1;
+        }
+
+        private void btnControlBar_MouseEnter(object sender, EventArgs e)
+        {
+            btnControlBar.Image = Properties.Resources.btnborda2;
+        }
+
+        private void btnControlBar_MouseLeave(object sender, EventArgs e)
+        {
+            btnControlBar.Image = Properties.Resources.btnborda1;
+        }
+
+        private void btnLock_MouseEnter(object sender, EventArgs e)
+        {
+            btnLock.Image = Properties.Resources.btncadeado2;
+        }
+
+        private void btnLock_MouseLeave(object sender, EventArgs e)
+        {
+            btnLock.Image = Properties.Resources.btncadeado1;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://autocom3.com.br/");
         }
 
         private void btnScript_Click(object sender, EventArgs e)
         {
-
 
         }
 

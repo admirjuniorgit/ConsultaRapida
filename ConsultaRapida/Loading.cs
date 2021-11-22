@@ -12,7 +12,7 @@ namespace ConsultaRapida
         
         private void Loading_Load(object sender, System.EventArgs e)
         {
-        
+           
         }
     }
 }

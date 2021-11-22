@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace ConsultaRapida
@@ -7,8 +8,8 @@ namespace ConsultaRapida
     class exportarDados
     {
         public static void Excel(DataGridView dgv)
-        {
-
+        { 
+           
             Type officeType = Type.GetTypeFromProgID("Excel.Application");
             if (officeType == null)
             {
@@ -20,8 +21,9 @@ namespace ConsultaRapida
                 try
                 {
                     Loading load = new Loading();
-                    load.Show();                    
+                    load.Show();
 
+                   
                     Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
                     excel.Visible = false;
                     Microsoft.Office.Interop.Excel.Workbook workbook = excel.Workbooks.Add(System.Reflection.Missing.Value);
@@ -67,8 +69,9 @@ namespace ConsultaRapida
 
                     sheet1.Rows.Cells.WrapText = false;
                     excel.Visible = true;
-
                     load.Close();
+
+
                 }
                 catch (Exception ex)
                 {

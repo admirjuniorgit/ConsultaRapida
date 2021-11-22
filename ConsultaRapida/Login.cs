@@ -77,7 +77,7 @@ namespace ConsultaRapida
                 var result = version1.CompareTo(version2);
                 if (result > 0)
                 {
-                    alerta.popup("Licença do Software","Uso interno Autocom3");
+                    alerta.popup("Consulta Rápida, versão: "+v1.ToString()," Software de Uso interno Autocom3");
                 }
                 else if (result < 0)
                 {
@@ -99,7 +99,7 @@ namespace ConsultaRapida
             }
             catch (WebException e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show("Você precisa estar conectado ao internet para verificar a versão do software.");
             }
             
         }
@@ -146,15 +146,6 @@ namespace ConsultaRapida
         
         private void btnEntrar_Click(object sender, EventArgs e)
         {
-            if (txtSenha.Text != "" && txtUsuario.Text != "" && txtPorta.Text != "")
-            {
-                _Entrar();
-                
-            }
-            else
-            {
-                alerta.popup("Atenção!" + Environment.NewLine,"Os campos usuário, senha e porta precisam estar preenchidos!");
-            }
         }
 
         private void pictureBox5_Click(object sender, EventArgs e)
@@ -332,6 +323,30 @@ namespace ConsultaRapida
         private void btnVisualizarSenha_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnEntrar_Click_1(object sender, EventArgs e)
+        {
+
+            if (txtSenha.Text != "" && txtUsuario.Text != "" && txtPorta.Text != "")
+            {
+                _Entrar();
+
+            }
+            else
+            {
+                alerta.popup("Atenção!" + Environment.NewLine, "Os campos usuário, senha e porta precisam estar preenchidos!");
+            }
+        }
+
+        private void btnEntrar_MouseEnter(object sender, EventArgs e)
+        {
+            btnEntrar.Image = Properties.Resources.btnentrar2;
+        }
+
+        private void btnEntrar_MouseLeave(object sender, EventArgs e)
+        {
+            btnEntrar.Image = Properties.Resources.btnEntrar1;
         }
     }
 }

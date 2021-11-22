@@ -37,7 +37,6 @@ namespace ConsultaRapida
             this.txtSenha = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnEntrar = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,6 +48,7 @@ namespace ConsultaRapida
             this.label6 = new System.Windows.Forms.Label();
             this.lbServicos = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnEntrar = new System.Windows.Forms.PictureBox();
             this.btnVisualizarSenha = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -58,6 +58,7 @@ namespace ConsultaRapida
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEntrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnVisualizarSenha)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -140,24 +141,6 @@ namespace ConsultaRapida
             this.label3.Size = new System.Drawing.Size(46, 15);
             this.label3.TabIndex = 22;
             this.label3.Text = "Senha:";
-            // 
-            // btnEntrar
-            // 
-            this.btnEntrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEntrar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(26)))), ((int)(((byte)(156)))));
-            this.btnEntrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnEntrar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEntrar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(179)))), ((int)(((byte)(255)))));
-            this.btnEntrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEntrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEntrar.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.btnEntrar.Location = new System.Drawing.Point(283, 277);
-            this.btnEntrar.Name = "btnEntrar";
-            this.btnEntrar.Size = new System.Drawing.Size(89, 30);
-            this.btnEntrar.TabIndex = 5;
-            this.btnEntrar.Text = "Entrar";
-            this.btnEntrar.UseVisualStyleBackColor = false;
-            this.btnEntrar.Click += new System.EventHandler(this.btnEntrar_Click);
             // 
             // panel1
             // 
@@ -273,6 +256,21 @@ namespace ConsultaRapida
             this.timer1.Interval = 5000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // btnEntrar
+            // 
+            this.btnEntrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEntrar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEntrar.Image = global::ConsultaRapida.Properties.Resources.btnEntrar1;
+            this.btnEntrar.Location = new System.Drawing.Point(263, 268);
+            this.btnEntrar.Name = "btnEntrar";
+            this.btnEntrar.Size = new System.Drawing.Size(109, 30);
+            this.btnEntrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnEntrar.TabIndex = 45;
+            this.btnEntrar.TabStop = false;
+            this.btnEntrar.Click += new System.EventHandler(this.btnEntrar_Click_1);
+            this.btnEntrar.MouseEnter += new System.EventHandler(this.btnEntrar_MouseEnter);
+            this.btnEntrar.MouseLeave += new System.EventHandler(this.btnEntrar_MouseLeave);
+            // 
             // btnVisualizarSenha
             // 
             this.btnVisualizarSenha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -332,6 +330,7 @@ namespace ConsultaRapida
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(397, 333);
+            this.Controls.Add(this.btnEntrar);
             this.Controls.Add(this.lbServicos);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -340,7 +339,6 @@ namespace ConsultaRapida
             this.Controls.Add(this.label4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnEntrar);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.MenuSuperior);
@@ -364,6 +362,7 @@ namespace ConsultaRapida
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnEntrar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnVisualizarSenha)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -383,7 +382,6 @@ namespace ConsultaRapida
         private System.Windows.Forms.TextBox txtSenha;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnEntrar;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label4;
@@ -397,5 +395,6 @@ namespace ConsultaRapida
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lbServicos;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.PictureBox btnEntrar;
     }
 }

@@ -51,7 +51,7 @@ namespace ConsultaRapida
                        
 
         }
-        public static void DesignForm(Panel PainelTitulo, PictureBox btnMinimizar, PictureBox btnMaximizar, PictureBox btnFechar, Button botaoPadrao)
+        public static void DesignForm(Panel PainelTitulo, PictureBox btnMinimizar, PictureBox btnMaximizar, PictureBox btnFechar, PictureBox botaoPadrao)
         {
             //definindo ancoragem e cor do painel superior.
             PainelTitulo.Dock = DockStyle.Top;
@@ -81,10 +81,10 @@ namespace ConsultaRapida
             botaoPadrao.ForeColor = Color.WhiteSmoke;
             botaoPadrao.Font = new Font("Arial", 8.25F, FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             botaoPadrao.Cursor = Cursors.Hand;
-            botaoPadrao.FlatStyle = FlatStyle.Flat;
+            
             botaoPadrao.Height = 30;
             botaoPadrao.Width = 72;
-            botaoPadrao.TextAlign = ContentAlignment.MiddleLeft;
+           
 
         }
 
