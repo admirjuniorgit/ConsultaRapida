@@ -1254,9 +1254,12 @@ namespace ConsultaRapida
 
         private void txtLock_KeyPress(object sender, KeyPressEventArgs e)
         {
+            var dia = DateTime.Now.ToString("dd");
+            var mes = DateTime.Now.ToString("MM");
+            var senha = Convert.ToInt16(dia + mes) * 2;
             if (e.KeyChar == 13)
             {
-                if (txtLock.Text == "p@ssw0rd2014@") //Senha para ferramentas de manutenção, não divulgar para o suporte a primeiro momento.
+                if (txtLock.Text == senha.ToString()) //Senha para ferramentas de manutenção, não divulgar para o suporte a primeiro momento.
                 {
                     if (btnScript.Visible == false)
                     {
