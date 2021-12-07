@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ConsultaRapida")]
 [assembly: AssemblyDescription("Software de consulta de banco de dados SQL Server")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Autocom3")]
+[assembly: AssemblyCompany("Junior Software")]
 [assembly: AssemblyProduct("ConsultaRapida")]
 [assembly: AssemblyCopyright("Copyright © Admir de Almeida Junior.  2021")]
 [assembly: AssemblyTrademark("")]
@@ -32,6 +32,6 @@ using System.Runtime.InteropServices;
 // É possível especificar todos os valores ou usar como padrão os Números de Build e da Revisão
 // usando o "*" como mostrado abaixo:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.0.1.9")]
-[assembly: AssemblyFileVersion("2.0.1.9")]
+[assembly: AssemblyVersion("2.0.2.1")]
+[assembly: AssemblyFileVersion("2.0.2.1")]
 [assembly: NeutralResourcesLanguage("pt-BR")]

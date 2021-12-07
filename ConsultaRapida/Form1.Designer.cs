@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtConsulta = new System.Windows.Forms.TextBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,6 +39,8 @@
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
             this.MenuSuperior = new System.Windows.Forms.Panel();
+            this.logo = new System.Windows.Forms.PictureBox();
+            this.btnPIX = new System.Windows.Forms.PictureBox();
             this.txtLock = new System.Windows.Forms.TextBox();
             this.panelLock = new System.Windows.Forms.PictureBox();
             this.btnLock = new System.Windows.Forms.PictureBox();
@@ -75,6 +77,7 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.pix = new System.Windows.Forms.PictureBox();
             this.btnLimparTab = new System.Windows.Forms.PictureBox();
             this.btnConsulta = new System.Windows.Forms.PictureBox();
             this.btnXLSEstrutura = new System.Windows.Forms.PictureBox();
@@ -87,7 +90,11 @@
             this.txtLog = new System.Windows.Forms.TextBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.lbDev = new System.Windows.Forms.Label();
+            this.tmr_mensagem = new System.Windows.Forms.Timer(this.components);
+            this.lbMensagem = new System.Windows.Forms.Label();
             this.MenuSuperior.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPIX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelLock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnControlBar)).BeginInit();
@@ -105,6 +112,7 @@
             this.contextMenuStrip1.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pix)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLimparTab)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnConsulta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXLSEstrutura)).BeginInit();
@@ -205,6 +213,8 @@
             // MenuSuperior
             // 
             this.MenuSuperior.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(26)))), ((int)(((byte)(156)))));
+            this.MenuSuperior.Controls.Add(this.logo);
+            this.MenuSuperior.Controls.Add(this.btnPIX);
             this.MenuSuperior.Controls.Add(this.txtLock);
             this.MenuSuperior.Controls.Add(this.panelLock);
             this.MenuSuperior.Controls.Add(this.btnLock);
@@ -225,6 +235,34 @@
             this.MenuSuperior.TabIndex = 19;
             this.MenuSuperior.DoubleClick += new System.EventHandler(this.MenuSuperior_DoubleClick);
             this.MenuSuperior.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MenuSuperior_MouseDown);
+            // 
+            // logo
+            // 
+            this.logo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.logo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
+            this.logo.Location = new System.Drawing.Point(1009, 15);
+            this.logo.Name = "logo";
+            this.logo.Size = new System.Drawing.Size(156, 31);
+            this.logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logo.TabIndex = 34;
+            this.logo.TabStop = false;
+            this.logo.Click += new System.EventHandler(this.logo_Click);
+            // 
+            // btnPIX
+            // 
+            this.btnPIX.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPIX.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPIX.Image = ((System.Drawing.Image)(resources.GetObject("btnPIX.Image")));
+            this.btnPIX.Location = new System.Drawing.Point(1171, 15);
+            this.btnPIX.Name = "btnPIX";
+            this.btnPIX.Size = new System.Drawing.Size(25, 25);
+            this.btnPIX.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.btnPIX.TabIndex = 33;
+            this.btnPIX.TabStop = false;
+            this.btnPIX.Click += new System.EventHandler(this.btnPIX_Click);
+            this.btnPIX.MouseEnter += new System.EventHandler(this.btnPIX_MouseEnter);
+            this.btnPIX.MouseLeave += new System.EventHandler(this.btnPIX_MouseLeave);
             // 
             // txtLock
             // 
@@ -459,28 +497,28 @@
             this.dgvEstrutura.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvEstrutura.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dgvEstrutura.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(72)))), ((int)(((byte)(154)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEstrutura.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(72)))), ((int)(((byte)(154)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEstrutura.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvEstrutura.ColumnHeadersVisible = false;
             this.dgvEstrutura.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.COLUMN_NAME,
             this.DATA_TYPE,
             this.CHARACTER_MAXIMUM_LENGTH,
             this.IS_NULLABLE});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DeepPink;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvEstrutura.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.DeepPink;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvEstrutura.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvEstrutura.EnableHeadersVisualStyles = false;
             this.dgvEstrutura.GridColor = System.Drawing.SystemColors.ControlLight;
             this.dgvEstrutura.Location = new System.Drawing.Point(352, 448);
@@ -661,6 +699,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.lbMensagem);
+            this.tabPage1.Controls.Add(this.pix);
             this.tabPage1.Controls.Add(this.btnLimparTab);
             this.tabPage1.Controls.Add(this.btnConsulta);
             this.tabPage1.Controls.Add(this.btnXLSEstrutura);
@@ -683,6 +723,19 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Consulta SQL";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // pix
+            // 
+            this.pix.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pix.Image = ((System.Drawing.Image)(resources.GetObject("pix.Image")));
+            this.pix.Location = new System.Drawing.Point(499, 0);
+            this.pix.Name = "pix";
+            this.pix.Size = new System.Drawing.Size(354, 505);
+            this.pix.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pix.TabIndex = 46;
+            this.pix.TabStop = false;
+            this.pix.Visible = false;
+            this.pix.Click += new System.EventHandler(this.pix_Click);
             // 
             // btnLimparTab
             // 
@@ -839,6 +892,21 @@
             this.lbDev.Text = "DEV";
             this.lbDev.Visible = false;
             // 
+            // tmr_mensagem
+            // 
+            this.tmr_mensagem.Enabled = true;
+            this.tmr_mensagem.Interval = 3000;
+            this.tmr_mensagem.Tick += new System.EventHandler(this.tmr_mensagem_Tick);
+            // 
+            // lbMensagem
+            // 
+            this.lbMensagem.AutoSize = true;
+            this.lbMensagem.ForeColor = System.Drawing.Color.OrangeRed;
+            this.lbMensagem.Location = new System.Drawing.Point(349, 14);
+            this.lbMensagem.Name = "lbMensagem";
+            this.lbMensagem.Size = new System.Drawing.Size(0, 15);
+            this.lbMensagem.TabIndex = 47;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -863,6 +931,8 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.MenuSuperior.ResumeLayout(false);
             this.MenuSuperior.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPIX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelLock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnControlBar)).EndInit();
@@ -882,6 +952,7 @@
             this.tabControl2.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pix)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLimparTab)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnConsulta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnXLSEstrutura)).EndInit();
@@ -950,6 +1021,11 @@
         private System.Windows.Forms.PictureBox btnConsulta;
         private System.Windows.Forms.PictureBox panelLock;
         private System.Windows.Forms.Label lbDev;
+        private System.Windows.Forms.PictureBox btnPIX;
+        private System.Windows.Forms.PictureBox pix;
+        private System.Windows.Forms.PictureBox logo;
+        private System.Windows.Forms.Timer tmr_mensagem;
+        private System.Windows.Forms.Label lbMensagem;
     }
 }
 

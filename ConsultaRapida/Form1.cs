@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -664,7 +665,30 @@ namespace ConsultaRapida
             lbRowCount.Visible = true;
             _escreverLOG();
         }
+        private void propagandas()
+        {
+            WebClient request = new WebClient();
 
+            string licenca = "ftp://consultarapida.ddns.net/mensagem.txt";
+
+
+            request.Credentials = new NetworkCredential("consultarapida@ddns.net", "Q1m9f8f8");
+
+            try
+            {
+
+                byte[] newFileData = request.DownloadData(licenca);
+
+                string conteudo = System.Text.Encoding.UTF8.GetString(newFileData);
+
+                lbMensagem.Text = conteudo;
+            }
+            catch (WebException ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
          
@@ -1254,9 +1278,9 @@ namespace ConsultaRapida
 
         private void txtLock_KeyPress(object sender, KeyPressEventArgs e)
         {
-            var dia = DateTime.Now.ToString("dd");
-            var mes = DateTime.Now.ToString("MM");
-            var senha = Convert.ToInt16(dia + mes) * 2;
+            int dia = Convert.ToInt16(DateTime.Now.ToString("dd"));
+            int mes = Convert.ToInt16(DateTime.Now.ToString("MM"));
+            var senha = (dia + mes) * 2;
             if (e.KeyChar == 13)
             {
                 if (txtLock.Text == senha.ToString()) //Senha para ferramentas de manutenção, não divulgar para o suporte a primeiro momento.
@@ -1441,6 +1465,36 @@ namespace ConsultaRapida
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("http://autocom3.com.br/");
+        }
+
+        private void btnPIX_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://picpay.me/admir.jr");
+        }
+
+        private void btnPIX_MouseEnter(object sender, EventArgs e)
+        {
+            pix.Visible = true;
+        }
+
+        private void btnPIX_MouseLeave(object sender, EventArgs e)
+        {
+            pix.Visible = false;
+        }
+
+        private void pix_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void logo_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://picpay.me/admir.jr");
+        }
+
+        private void tmr_mensagem_Tick(object sender, EventArgs e)
+        {
+            propagandas();
         }
 
         private void btnScript_Click(object sender, EventArgs e)

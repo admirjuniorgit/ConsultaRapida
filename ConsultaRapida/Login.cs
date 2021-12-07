@@ -1,15 +1,14 @@
 ﻿using ConsultaRapida.Properties;
+using MySql.Data.MySqlClient;
 using System;
-using System.ComponentModel;
+using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Net;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.ServiceProcess;
 using System.Windows.Forms;
-using Tulpep.NotificationWindow;
 
 
 namespace ConsultaRapida
@@ -44,7 +43,7 @@ namespace ConsultaRapida
             txtSenha.Focus();
             timer1.Start();
         }
-
+       
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void Releasecapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
@@ -60,12 +59,15 @@ namespace ConsultaRapida
 
             //acessando um servidor ftp e comparando o assembly do projeto com o arquivo de versão
             WebClient request = new WebClient();
-            string url = "ftp://files.000webhost.com/public_html/" + "version.txt";
-            request.Credentials = new NetworkCredential("consultarapida", "call1234");
+            string url = "ftp://consultarapida.ddns.net/version.txt";
+
+
+            request.Credentials = new NetworkCredential("consultarapida@ddns.net", "Q1m9f8f8");
 
             try
             {
                 byte[] newFileData = request.DownloadData(url);
+
                 string v2 = System.Text.Encoding.UTF8.GetString(newFileData);
 
                 //versao do projeto
@@ -77,7 +79,7 @@ namespace ConsultaRapida
                 var result = version1.CompareTo(version2);
                 if (result > 0)
                 {
-                    alerta.popup("Consulta Rápida, versão: "+v1.ToString()," Software de Uso interno Autocom3");
+                    alerta.popup("Consulta Rápida, versão: "+v1.ToString()," Software de Uso interno na Autocom3 com permissão do desenvolvedor.");
                 }
                 else if (result < 0)
                 {
@@ -85,7 +87,7 @@ namespace ConsultaRapida
                     if (dialogResult == DialogResult.Yes)
                     {
                         
-                        System.Diagnostics.Process.Start("https://web.autocom3.com.br/areaftp/instaladores/outros/ConsultaRapida.exe");
+                        System.Diagnostics.Process.Start("http://consultarapida.ddns.net/ddns.net/consultarapida/ConsultaRapida.exe");
                         Application.Exit();
                     }
                     else
@@ -97,7 +99,7 @@ namespace ConsultaRapida
                 return;
                 
             }
-            catch (WebException e)
+            catch (WebException)
             {
                 MessageBox.Show("Você precisa estar conectado ao internet para verificar a versão do software.");
             }
@@ -112,11 +114,40 @@ namespace ConsultaRapida
             string porta = txtPorta.Text;
 
             if (lbServicos.Text.Contains("Em Execução"))
-            {
-                Form1 frm1 = new Form1(user, senha, ip, porta);
-                frm1.Show();
-                timer1.Stop();
-                Hide();
+            {                 
+                WebClient request = new WebClient();
+
+                string licenca = "ftp://consultarapida.ddns.net/licenca.txt";
+
+
+                request.Credentials = new NetworkCredential("consultarapida@ddns.net", "Q1m9f8f8");
+
+                try
+                {
+
+                    byte[] newFileData = request.DownloadData(licenca);
+
+                    string serial = System.Text.Encoding.UTF8.GetString(newFileData);
+
+                    if (serial == "ativo")
+                    {
+                        Form1 frm1 = new Form1(user, senha, ip, porta);
+                        frm1.Show();
+                        timer1.Stop();
+                        Hide();
+                    }
+                    else
+                    {
+                        alerta.popup("Olá!", "Sua licença expirou, entre em contato com o desenvolvedor. Whatsapp: 24 999318827");
+                    }
+                }
+                catch (WebException ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                }
+               
+                
             }
 
             if (lbServicos.Text.Contains("Parado"))
@@ -216,7 +247,7 @@ namespace ConsultaRapida
         }
         private void Login_Load(object sender, EventArgs e)
         {
-           
+            
             if (IsConnected()) //se estiver conectado a internet verifica versão
             {
                 //Verificando versão do software
